@@ -53,7 +53,7 @@ public class Game extends Canvas implements Runnable {
 			return;
 		}
 		Graphics g = bs.getDrawGraphics();
-		handler.render(g);
+	
 
 		// -------------------
 
@@ -61,7 +61,7 @@ public class Game extends Canvas implements Runnable {
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		g.setColor(Color.red);
 		g.fillRect(100, 100, 100, 100);
-
+		handler.render(g);
 		// -------------------
 		g.dispose();
 		bs.show();
