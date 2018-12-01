@@ -11,15 +11,18 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.awt.Graphics;
 
 /**
- * Unit test for ...
+ * Unit test for Game and Handler
  * 
- * @author
- * @since
- * @version
+ * @author Timo Wortmann
+ * @since 01.12.2018
+ * @version 1.0
  */
-class Tests {
+class GameTest {
 
 	@Test
+	/**
+	 * Tests if the game stops properly and if the Thread is closed on shutdown
+	 */
 	void testShutdown() {
 		Game game = new Game();
 		game.start();
@@ -27,6 +30,9 @@ class Tests {
 	}
 
 	@Test
+	/**
+	 * Replication of the game loop Tests if the game runs 60 times per second
+	 */
 	void testFps() {
 		boolean running = true;
 		double tickCount = 60.0;
@@ -57,6 +63,13 @@ class Tests {
 		}
 	}
 
+	/**
+	 * Test block that extends GameObject Used for Tests only
+	 * 
+	 * @author Timo Wortmann
+	 * @since 01.12.2018
+	 * @version 1.0
+	 */
 	class TestBlock extends GameObject {
 
 		public TestBlock(int x, int y, int width, int height) {
@@ -65,17 +78,22 @@ class Tests {
 
 		@Override
 		public void render(Graphics g) {
-			// do nothing
 		}
 
 	}
 
 	@Test
-	public void test() {
+	/**
+	 * Tests if the game adds and removes an Object properly
+	 */
+	void testHandleObject() {
 		Handler testHandler = new Handler();
 		GameObject block = new TestBlock(0, 0, 0, 0);
 		int blockCount = testHandler.getBlocksCount();
 		testHandler.addBlock(block);
+		assertEquals(blockCount + 1, testHandler.getBlocksCount(),
+				"The block count of " + testHandler.getBlocksCount() + " didnt match the expected " + blockCount + ".");
+		testHandler.removeBlock(block);
 		assertEquals(blockCount, testHandler.getBlocksCount(),
 				"The block count of " + testHandler.getBlocksCount() + " didnt match the expected " + blockCount + ".");
 	}

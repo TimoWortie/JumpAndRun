@@ -7,45 +7,59 @@ import java.awt.image.BufferStrategy;
 
 import handler.Handler;
 
+/**
+ * Game creation for JumpAndRun.
+ * 
+ * @author Timo Wortmann
+ * @since 27.11.2018
+ * @version 1.0
+ */
 public class Game extends Canvas implements Runnable {
 
 	private Handler handler = new Handler();
 	private Thread thread = new Thread();
 	private boolean running = false;
 
+	/**
+	 * Initializes the handler This method is only executed once at the start of
+	 * the game#
+	 *
+	 */
 	public void init() {
 		handler.init();
 	}
 
-	@Override
+	@Override /**
+				 * Creates the game loop Will always run, when a game is created
+				 * Calls the render and tick methods
+				 *
+				 */
 	public void run() {
 		init();
 		long lastTime = System.nanoTime();
 		long timer = System.currentTimeMillis();
 		double delta = 0.0;
 		double nanosecounds = 1000000000.0 / 60.0;
-		int frames = 0;
-		int ticks = 0;
 		while (running) {
 			long now = System.nanoTime();
 			delta += (now - lastTime) / nanosecounds;
 			lastTime = now;
 			while (delta >= 1) {
 				tick();
-				ticks++;
 				delta--;
 			}
 			render();
-			frames++;
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
-				frames = 0;
-				ticks = 0;
 			}
 		}
 		stop();
 	}
 
+	/**
+	 * Creates a BufferedStrategy and Graphics object to render Executes the
+	 * render method of handler Runs 60 times per second
+	 */
 	public void render() {
 		BufferStrategy bs = getBufferStrategy();
 		if (bs == null) {
@@ -53,7 +67,6 @@ public class Game extends Canvas implements Runnable {
 			return;
 		}
 		Graphics g = bs.getDrawGraphics();
-	
 
 		// -------------------
 
@@ -67,6 +80,10 @@ public class Game extends Canvas implements Runnable {
 		bs.show();
 	}
 
+	/**
+	 * Starts the game and a new Thread
+	 * 
+	 */
 	public synchronized void start() {
 		if (running)
 			return;
@@ -74,11 +91,19 @@ public class Game extends Canvas implements Runnable {
 		thread = new Thread(this);
 		thread.start();
 	}
+
+	/**
+	 * Forces the game to close
+	 */
 	public synchronized void shutdown() {
-		if(running)
-			running=false;
+		if (running)
+			running = false;
 		thread.stop();
 	}
+
+	/**
+	 * Stops the game and waits for everything to finish
+	 */
 	public synchronized void stop() {
 		if (!running)
 			return;
@@ -90,14 +115,11 @@ public class Game extends Canvas implements Runnable {
 		}
 	}
 
+	/**
+	 * Calls the tick method of the handler Runs 60 times per second
+	 */
 	public void tick() {
 		handler.tick();
-	}
-	
-	
-	public void setRunning(boolean running) {
-		this.running=running;
-		thread.stop();
 	}
 
 }
