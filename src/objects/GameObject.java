@@ -2,10 +2,10 @@ package objects;
 
 import java.awt.Graphics;
 
-public class GameObject {
+public abstract class GameObject {
 	protected int height, width,x, y;
 
-	public GameObject(int height, int width, int x, int y) {
+	public GameObject(int x, int y, int width, int height) {
 		super();
 		this.height = height;
 		this.width = width;
@@ -44,9 +44,7 @@ public class GameObject {
 	public void setY(int y) {
 		this.y = y;
 	}
-	public void render(Graphics g) {
-		
-	}
+	public abstract void render(Graphics g);
 		
 		
 }

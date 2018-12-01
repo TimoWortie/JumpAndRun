@@ -11,6 +11,8 @@ public class Stone extends GameObject{
 		super(height, width, x, y);
 		
 	}
+	
+	@Override
 	public void render(Graphics g) {
 		g.setColor(Color.blue);
 		g.fillRect(x, y, width, height);
