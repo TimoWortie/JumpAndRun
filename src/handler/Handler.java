@@ -36,5 +36,16 @@ public class Handler {
 		blocks.add(new Stone(50,50,500,100));
 
 	}
-
+	
+	
+	public void addBlock(GameObject block) {
+		blocks.add(block);
+	}
+	
+	public void removeBlock(GameObject block) {
+		blocks.remove(block);
+	}
+	public int getBlocksCount() {
+		return blocks.size();
+	}
 }

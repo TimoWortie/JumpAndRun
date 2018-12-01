@@ -20,19 +20,20 @@ public class Player extends GameObject {
 	public void tick() {
 		if (playerIsMoving) {
 			if (directionLeft) {
-				x-=5;
+				x -= 5;
 			}
 			// gehe nach links mit key a
-		} else if (directionRight) {
-			x+=5;
-			// gehe nach rechts key d
+			else if (directionRight) {
+				x += 5;
+				// gehe nach rechts key d
+			}
 		}
 		if (playerJump) {
-			y-=5;
+			y -= 5;
 			// springe nach oben key space
 		}
 	}
-	
+
 	@Override
 	public void render(Graphics g) {
 		// graphic buffered image

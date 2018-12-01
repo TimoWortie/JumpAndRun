@@ -74,7 +74,11 @@ public class Game extends Canvas implements Runnable {
 		thread = new Thread(this);
 		thread.start();
 	}
-
+	public synchronized void shutdown() {
+		if(running)
+			running=false;
+		thread.stop();
+	}
 	public synchronized void stop() {
 		if (!running)
 			return;
@@ -82,11 +86,18 @@ public class Game extends Canvas implements Runnable {
 		try {
 			thread.join();
 		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 	}
 
 	public void tick() {
 		handler.tick();
+	}
+	
+	
+	public void setRunning(boolean running) {
+		this.running=running;
+		thread.stop();
 	}
 
 }
