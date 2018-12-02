@@ -82,7 +82,3 @@ class TestGameObject {
 	  assertEquals(100, gm.getHeight());
 	}
 }
-/** public void testSetForeignWord() {
-Card card = new Card();
-card.setForeignWord("test");
-assertTrue(card.getForeignWord() == "test");*/
