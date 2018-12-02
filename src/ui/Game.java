@@ -21,8 +21,9 @@ public class Game extends Canvas implements Runnable {
 	private boolean running = false;
 
 	/**
-	 * Initializes the handler This method is only executed once at the start of
-	 * the game#
+	 * Initializes the handler. This method is only executed once at the start of
+	 * the game. In the future: initializes everything else that needs to be done at
+	 * the start of the game.
 	 *
 	 */
 	public void init() {
@@ -30,7 +31,7 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	@Override /**
-				 * Creates the game loop Will always run, when a game is created
+				 * Creates the game loop Will run 60 times per second while running is true.
 				 * Calls the render and tick methods
 				 *
 				 */
@@ -57,8 +58,8 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	/**
-	 * Creates a BufferedStrategy and Graphics object to render Executes the
-	 * render method of handler Runs 60 times per second
+	 * Creates a BufferedStrategy and Graphics object to render. Executes the render
+	 * method of handler.
 	 */
 	public void render() {
 		BufferStrategy bs = getBufferStrategy();
@@ -69,19 +70,19 @@ public class Game extends Canvas implements Runnable {
 		Graphics g = bs.getDrawGraphics();
 
 		// -------------------
-
+		// For test purpose only
 		g.setColor(Color.white);
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		g.setColor(Color.red);
 		g.fillRect(100, 100, 100, 100);
-		handler.render(g);
 		// -------------------
+		handler.render(g);
 		g.dispose();
 		bs.show();
 	}
 
 	/**
-	 * Starts the game and a new Thread
+	 * Starts the game and a new Thread.
 	 * 
 	 */
 	public synchronized void start() {
@@ -102,7 +103,7 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	/**
-	 * Stops the game and waits for everything to finish
+	 * Stops the game and waits for everything to finish.
 	 */
 	public synchronized void stop() {
 		if (!running)
@@ -116,7 +117,7 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	/**
-	 * Calls the tick method of the handler Runs 60 times per second
+	 * Calls the tick method of the handler.
 	 */
 	public void tick() {
 		handler.tick();

@@ -98,4 +98,29 @@ class GameTest {
 				"The block count of " + testHandler.getBlocksCount() + " didnt match the expected " + blockCount + ".");
 	}
 
+	@Test
+	/**
+	 * Tests for an error when trying to remove a block that is not there
+	 */
+	void testRemoveBlockOnEmptyHandler() {
+		Handler testHandler = new Handler();
+		GameObject block = new TestBlock(0, 0, 0, 0);
+		testHandler.removeBlock(block);
+	}
+
+	@Test
+	/**
+	 * Tests if the handler removes a block with the same constructor as another one
+	 */
+	void testDuplicateBlock() {
+		Handler testHandler = new Handler();
+		GameObject block = new TestBlock(0, 0, 0, 0);
+		GameObject blockDuplicate = new TestBlock(0, 0, 0, 0);
+		int counter = testHandler.getBlocksCount();
+		testHandler.addBlock(block);
+		testHandler.removeBlock(blockDuplicate);
+		assertEquals(counter + 1, testHandler.getBlocksCount(),
+				"The bock count of " + testHandler.getBlocksCount() + " didnt match expected " + (counter + 1) + ".");
+	}
+
 }

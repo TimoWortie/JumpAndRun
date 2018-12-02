@@ -32,8 +32,7 @@ public class Handler {
 	/**
 	 * draws the Player and all Blocks
 	 * 
-	 * @param g
-	 *            Graphics object where everything will be drawn on
+	 * @param g Graphics object where everything will be drawn on
 	 */
 	public void render(Graphics g) {
 		g.setColor(Color.green);
@@ -47,8 +46,8 @@ public class Handler {
 	}
 
 	/**
-	 * Initializes player and blocks This method is only executed once at the
-	 * start of the game
+	 * Initializes player and blocks. This method is only executed once at the start
+	 * of the game
 	 *
 	 */
 	public void init() {
@@ -62,8 +61,7 @@ public class Handler {
 	/**
 	 * Adds a block to the managed objects
 	 *
-	 * @param block
-	 *            block to add
+	 * @param block block to add
 	 */
 	public void addBlock(GameObject block) {
 		blocks.add(block);
@@ -72,8 +70,7 @@ public class Handler {
 	/**
 	 * Removes a block from the managed objects
 	 *
-	 * @param block
-	 *            block to remove
+	 * @param block block to remove
 	 */
 	public void removeBlock(GameObject block) {
 		blocks.remove(block);
