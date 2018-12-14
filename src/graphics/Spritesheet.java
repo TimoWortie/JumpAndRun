@@ -8,7 +8,7 @@ public class Spritesheet {
 	
 
 	private BufferedImage sheet;
-	public static int a,b;
+	private int height,width;
 	
 	public Spritesheet(String path){
 		try {
@@ -16,9 +16,9 @@ public class Spritesheet {
 		} catch (IOException e) {}
 	}
 	
-	public BufferedImage getSprite(int x,int y,int a,int b){
-		this.a=a;
-		this.b=b;
-		return sheet.getSubimage(x*32-32, y*32-32, 32*a, 32*b);
+	public BufferedImage getSprite(int x,int y,int width,int height){
+		this.height=height;
+		this.width=width;
+		return sheet.getSubimage(x*32-32, y*32-32, 32*width, 32*height);
 	}
 }

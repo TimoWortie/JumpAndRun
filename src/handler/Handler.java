@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import input.Key;
 import objects.GameObject;
 import objects.blocks.Stone;
 import objects.player.Player;
@@ -19,6 +20,10 @@ public class Handler {
 
 	private ArrayList<GameObject> blocks = new ArrayList<>();
 	private Player player;
+	private Key key;
+	public Handler(Key key){
+		this.key=key;
+	}
 
 	/**
 	 * Runs the tick() method of the generated Player In the future: Runs tick()
@@ -26,7 +31,20 @@ public class Handler {
 	 * 
 	 */
 	public void tick() {
-		player.fall();
+		if(key.isRight()){
+			player.setVelX(5);
+		}else if(key.isLeft()){
+			player.setVelX(-5);
+		}else{
+			player.setVelX(0);
+		}
+		if(key.isUp()){
+			player.setJumping(true);
+		}
+		for (GameObject bl : blocks) {
+			player.checkCollision(bl);
+		}
+		player.tick();
 	}
 
 	/**
@@ -40,9 +58,8 @@ public class Handler {
 		for (GameObject bl : blocks) {
 			bl.render(g);
 		}
-		/*
-		 * player.render(g);
-		 */
+		
+		  player.render(g);
 	}
 
 	/**
@@ -51,11 +68,9 @@ public class Handler {
 	 *
 	 */
 	public void init() {
-		player = new Player(100, 100, 100, 100);
-		// Add blocks here:
-		blocks.add(new Stone(200, 100, 200, 100));
-		blocks.add(new Stone(50, 50, 500, 100));
-
+		player = new Player(100, 250, 100, 100);
+//		player.setJumping(true);
+		blocks.add(new Stone(100,100,100,100));
 	}
 
 	/**

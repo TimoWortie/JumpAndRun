@@ -1,14 +1,15 @@
 
-import ui.Game;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.awt.Graphics;
 
 import org.junit.jupiter.api.Test;
 
 import handler.Handler;
+import input.Key;
 import objects.GameObject;
-
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.awt.Graphics;
+import ui.Game;
 
 /**
  * Unit test for Game and Handler
@@ -87,7 +88,7 @@ class GameTest {
 	 * Tests if the game adds and removes an Object properly
 	 */
 	void testHandleObject() {
-		Handler testHandler = new Handler();
+		Handler testHandler = new Handler(new Key());
 		GameObject block = new TestBlock(0, 0, 0, 0);
 		int blockCount = testHandler.getBlocksCount();
 		testHandler.addBlock(block);
@@ -103,7 +104,7 @@ class GameTest {
 	 * Tests for an error when trying to remove a block that is not there
 	 */
 	void testRemoveBlockOnEmptyHandler() {
-		Handler testHandler = new Handler();
+		Handler testHandler = new Handler(new Key());
 		GameObject block = new TestBlock(0, 0, 0, 0);
 		testHandler.removeBlock(block);
 	}
@@ -113,7 +114,7 @@ class GameTest {
 	 * Tests if the handler removes a block with the same constructor as another one
 	 */
 	void testDuplicateBlock() {
-		Handler testHandler = new Handler();
+		Handler testHandler = new Handler(new Key());
 		GameObject block = new TestBlock(0, 0, 0, 0);
 		GameObject blockDuplicate = new TestBlock(0, 0, 0, 0);
 		int counter = testHandler.getBlocksCount();

@@ -5,45 +5,57 @@ import java.awt.event.KeyListener;
 
 public class Key implements KeyListener {
 
-	private boolean shift;
-	private boolean a;
-	private boolean d;
+	private boolean left;
+	private boolean right;
+	private boolean up;
 
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_D) {
-			d = true;
+			right = true;
 		}
 		if (key == KeyEvent.VK_A) {
-			a = true;
+			left = true;
 		}
 		if (key == KeyEvent.VK_W) {
-
-		}
-
-		if (key == KeyEvent.VK_ESCAPE) {
-		}
-
-		if (key == KeyEvent.VK_SHIFT) {
-			shift = true;
+			up=true;
 		}
 	}
 
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_D) {
-			d = false;
+			right = false;
 		}
-		if (key == e.VK_A) {
-			a = false;
+		if (key == KeyEvent.VK_A) {
+			left = false;
 		}
-		if (key == KeyEvent.VK_SHIFT) {
-			shift = false;
+		if (key == KeyEvent.VK_W) {
+			up = false;
 		}
+	}
+
+	public boolean isLeft() {
+		return left;
+	}
+
+	public void setLeft(boolean left) {
+		this.left = left;
+	}
+
+	public boolean isRight() {
+		return right;
+	}
+
+	public void setRight(boolean right) {
+		this.right = right;
 	}
 
 	public void keyTyped(KeyEvent e) {
 
+	}
+	public boolean isUp(){
+		return this.up;
 	}
 
 }

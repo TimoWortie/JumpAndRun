@@ -1,6 +1,8 @@
 package objects;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 /**
  * Creator for Objects(blocks/Stone).
  * 
@@ -77,6 +79,29 @@ public abstract class GameObject {
 		this.y = y;
 	}
 	public abstract void render(Graphics g);
+	
+	
+	public Rectangle getBounds(){
+		return new Rectangle(x,y,width,height);
+	}
+	
+	public Rectangle getRight(){
+		return new Rectangle(x+width-15,y+5,15,height-10);
+	}
+	public Rectangle getLeft(){
+		return new Rectangle(x,y+5,15,height-10);
+	}
+	public Rectangle getBottom(){
+		return new Rectangle(x,y+height-15,width,15);
+	}
+	public Rectangle getTop(){
+		return new Rectangle(x+5, y, width-10, 15);
+	}
+	public void renderBounds(Graphics g){
+		g.setColor(Color.green);
+		g.fillRect(x+5, y, width-10, 15);
+		g.fillRect(x,y+height-15,width,15);
+	}
 		
 		
 }
