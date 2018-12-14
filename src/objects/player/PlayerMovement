@@ -1,0 +1,29 @@
+package objects.player;
+
+public class PlayerMovement {
+
+	private boolean playerIsMoving = false;
+	private boolean directionRight = false;
+	private boolean directionLeft = false;
+
+	public void tick() {
+		if (playerIsMoving) {
+			int x;
+			if (directionLeft) {
+				x -= 5;
+			}
+			// gehe nach links mit key a
+			else if (directionRight) {
+				x += 5;
+				// gehe nach rechts key d
+			}
+			/**
+			 * Method for the movement of the player.
+			 */
+
+	private void checkCollision(GameObject object) {
+	}
+	/**
+	 * Method for the collision with GameObject
+	 */
+}
