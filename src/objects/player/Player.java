@@ -2,6 +2,8 @@ package objects.player;
 
 import java.awt.Color;
 import java.awt.Graphics;
+
+import input.Key;
 import objects.GameObject;
 
 /**
@@ -13,12 +15,11 @@ import objects.GameObject;
  */
 
 public class Player extends GameObject {
-	
-	private int velX;
 
-	private int gravity = 3;
-	private boolean falling = false;
+	private int velX = 0;
+	private int velY = 5;
 	private boolean jumping = false;
+	private boolean onGround = false;
 	private boolean left, right;
 
 	/**
@@ -27,7 +28,6 @@ public class Player extends GameObject {
 	 */
 	public Player(int x, int y, int width, int height) {
 		super(x, y, width, height);
-		right=true;
 	}
 
 	/**
@@ -39,76 +39,84 @@ public class Player extends GameObject {
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.blue);
+		g.setColor(Color.yellow);
 		g.fillRect(x, y, width, height);
 		renderBounds(g);
 		// graphic buffered image
 	}
 
-	public void tick() {
-		if (jumping) {
-			y-=gravity;
-			// springe nach oben key space
-		}
-		x+=velX;
-//		if (left) {
-//			x -= 5;
-//		}
-//		// gehe nach links mit key a
-//		else if (right) {
-//			x += 5;
-//			// gehe nach rechts key d
-//		}
-		if(falling){
-			y+=gravity;
-		}
-
-	}
-
-	public void fall() {
-		if (falling)
-			y += gravity;
-		// fall wert nach jump
-	}
-
 	/**
 	 * Method for the jump and the calculation of the gravity.
 	 */
-	public void checkCollision(GameObject object) {
-		if(getLeft().intersects(object.getRight())){
-			x = object.getX() + 40;
-			System.out.println("right");
-			velX=0;
-		}else if(getRight().intersects(object.getLeft())){
-			x = object.getX() - 65;
-			System.out.println("left");
-			velX=0;
-		}else if(getTop().intersects(object.getBottom())){
-			y = object.getY() + 65;
-			System.out.println("bottom");
-			jumping = false;
-			falling = true;
+	public void calculateMovement(Key key) {
+		if (key.isRight()) {
+			setVelX(5);
+		} else if (key.isLeft()) {
+			setVelX(-5);
+		} else {
+			setVelX(0);
 		}
-		if(getBottom().intersects(object.getTop())){
-			y = object.getY() - 100;
-			falling=false;
-			jumping=false;
+		if (key.isUp()) {
+			setVelY(-20);
 		}
-		
 	}
+
+	public void tick() {
+		if (!right && !left) {
+			velX = 0;
+		}
+		if (velY < 20) {
+			velY += 1;
+		}
+		y += velY;
+		x += velX;
+	}
+
 	/**
 	 * Method for the collision with GameObject
 	 */
+	public void checkCollision(GameObject object) {
+		if (getBottom().intersects(object.getTop())) {
+			y = object.getY() - (height - 1);
+			onGround = true;
+			jumping = false;
+		} else if (getTop().intersects(object.getBottom())) {
+			velY = 0;
+			y = object.getY() + height;
+			jumping = false;
+		} else if (getLeft().intersects(object.getRight())) {
+			x = object.getX() + (width - 1);
+			left = false;
+		} else if (getRight().intersects(object.getLeft())) {
+			x = object.getX() - (width - 1);
+			right = false;
+		}
 
-	public int getVelX() {
-		return velX;
 	}
 
+	/**
+	 * Method for the collision with GameObject
+	 */
 	public void setVelX(int velX) {
+		if (velX < 0) {
+			left = true;
+			right = false;
+		} else if (velX > 0) {
+			left = false;
+			right = true;
+		}
 		this.velX = velX;
 	}
-	public void setJumping(boolean jumping){
-		this.jumping=jumping;
+
+	public void setJumping(boolean jumping) {
+		this.jumping = jumping;
 	}
-	
+
+	public void setVelY(int gravity) {
+		if (gravity < 0 && !jumping && onGround) {
+			this.velY = gravity;
+			onGround = false;
+		}
+	}
+
 }

@@ -3,6 +3,7 @@ package objects;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+
 /**
  * Creator for Objects(blocks/Stone).
  * 
@@ -11,9 +12,10 @@ import java.awt.Rectangle;
  * @version 1.0
  */
 public abstract class GameObject {
-	protected int height, width,x, y;
+	protected int height, width, x, y;
+
 	/**
-	 *initialization for needed components.
+	 * initialization for needed components.
 	 */
 	public GameObject(int x, int y, int width, int height) {
 		super();
@@ -22,6 +24,7 @@ public abstract class GameObject {
 		this.x = x;
 		this.y = y;
 	}
+
 	/**
 	 * Gets the number of height.
 	 *
@@ -30,12 +33,14 @@ public abstract class GameObject {
 	public int getHeight() {
 		return height;
 	}
+
 	/**
 	 * Sets the height for GameObjects.
 	 */
 	public void setHeight(int height) {
 		this.height = height;
 	}
+
 	/**
 	 * Gets the number of the width.
 	 *
@@ -44,12 +49,14 @@ public abstract class GameObject {
 	public int getWidth() {
 		return width;
 	}
+
 	/**
 	 * Sets the width for GameObjects.
 	 */
 	public void setWidth(int width) {
 		this.width = width;
 	}
+
 	/**
 	 * Gets the number of coordinate x.
 	 *
@@ -58,12 +65,14 @@ public abstract class GameObject {
 	public int getX() {
 		return x;
 	}
+
 	/**
 	 * Sets the coordinate x for GameObjects.
 	 */
 	public void setX(int x) {
 		this.x = x;
 	}
+
 	/**
 	 * Gets the number of coordinate y.
 	 *
@@ -72,36 +81,40 @@ public abstract class GameObject {
 	public int getY() {
 		return y;
 	}
+
 	/**
 	 * Sets the coordinate y for GameObjects.
 	 */
 	public void setY(int y) {
 		this.y = y;
 	}
+
 	public abstract void render(Graphics g);
-	
-	
-	public Rectangle getBounds(){
-		return new Rectangle(x,y,width,height);
+
+	public Rectangle getBounds() {
+		return new Rectangle(x, y, width, height);
 	}
-	
-	public Rectangle getRight(){
-		return new Rectangle(x+width-15,y+5,15,height-10);
+
+	public Rectangle getRight() {
+		return new Rectangle(x + width - 15, y + 5, 15, height - 10);
 	}
-	public Rectangle getLeft(){
-		return new Rectangle(x,y+5,15,height-10);
+
+	public Rectangle getLeft() {
+		return new Rectangle(x, y + 5, 15, height - 10);
 	}
-	public Rectangle getBottom(){
-		return new Rectangle(x,y+height-15,width,15);
+
+	public Rectangle getBottom() {
+		return new Rectangle(x, y + height - 15, width, 15);
 	}
-	public Rectangle getTop(){
-		return new Rectangle(x+5, y, width-10, 15);
+
+	public Rectangle getTop() {
+		return new Rectangle(x + 5, y, width - 10, 15);
 	}
-	public void renderBounds(Graphics g){
+
+	public void renderBounds(Graphics g) {
 		g.setColor(Color.green);
-		g.fillRect(x+5, y, width-10, 15);
-		g.fillRect(x,y+height-15,width,15);
+		g.fillRect(x + 5, y, width - 10, 15);
+		g.fillRect(x, y + height - 15, width, 15);
 	}
-		
-		
+
 }

@@ -20,23 +20,23 @@ public class Game extends Canvas implements Runnable {
 	private Handler handler;
 	private Thread thread = new Thread();
 	private boolean running = false;
-	private Key key=new Key();
+	private Key key = new Key();
 
 	/**
-	 * Initializes the handler. This method is only executed once at the start of
-	 * the game. In the future: initializes everything else that needs to be done at
-	 * the start of the game.
+	 * Initializes the handler. This method is only executed once at the start
+	 * of the game. In the future: initializes everything else that needs to be
+	 * done at the start of the game.
 	 *
 	 */
 	public void init() {
-		handler=new Handler(key);
+		handler = new Handler(key);
 		addKeyListener(key);
 		handler.init();
 	}
 
 	@Override /**
-				 * Creates the game loop Will run 60 times per second while running is true.
-				 * Calls the render and tick methods
+				 * Creates the game loop Will run 60 times per second while
+				 * running is true. Calls the render and tick methods
 				 *
 				 */
 	public void run() {
@@ -62,8 +62,8 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	/**
-	 * Creates a BufferedStrategy and Graphics object to render. Executes the render
-	 * method of handler.
+	 * Creates a BufferedStrategy and Graphics object to render. Executes the
+	 * render method of handler.
 	 */
 	public void render() {
 		BufferStrategy bs = getBufferStrategy();

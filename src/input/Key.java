@@ -18,7 +18,7 @@ public class Key implements KeyListener {
 			left = true;
 		}
 		if (key == KeyEvent.VK_W) {
-			up=true;
+			up = true;
 		}
 	}
 
@@ -39,22 +39,15 @@ public class Key implements KeyListener {
 		return left;
 	}
 
-	public void setLeft(boolean left) {
-		this.left = left;
-	}
-
 	public boolean isRight() {
 		return right;
-	}
-
-	public void setRight(boolean right) {
-		this.right = right;
 	}
 
 	public void keyTyped(KeyEvent e) {
 
 	}
-	public boolean isUp(){
+
+	public boolean isUp() {
 		return this.up;
 	}
 
