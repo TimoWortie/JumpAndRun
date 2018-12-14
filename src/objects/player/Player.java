@@ -1,53 +1,36 @@
-
 package objects.player;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import objects.GameObject;
 
+/**
+ * Creator of the Player.
+ * 
+ * @author Alischa Fenn
+ * @since 14.12.2018
+ * @version 1.0
+ */
+
 public class Player extends GameObject {
-
-	private boolean playerIsMoving = false;
-	private boolean directionRight = false;
-	private boolean directionLeft = false;
-	private int gravity = 1;
-	private boolean falling = true;
-	private boolean playerJump = false;
-
+	/**
+	 * Needed components for the player, that were initialized in the class
+	 * GameObject.
+	 */
 	public Player(int x, int y, int width, int height) {
 		super(x, y, width, height);
 	}
 
-	public void tick() {
-		if (playerIsMoving) {
-			if (directionLeft) {
-				x -= 5;
-			}
-			// gehe nach links mit key a
-			else if (directionRight) {
-				x += 5;
-				// gehe nach rechts key d
-			}
-		}
-		if (playerJump) {
-			y -= 5;
-			// springe nach oben key space
-		}
-	}
+	/**
+	 * draws the Player
+	 * 
+	 * @param g Graphics object where everything will be drawn on
+	 */
 
 	@Override
 	public void render(Graphics g) {
+		g.setColor(Color.blue);
+		g.fillRect(x, y, width, height);
 		// graphic buffered image
-	}
-
-	private void checkCollision(GameObject object) {
-
-		// Kollision mit Block (Handler)
-
-	}
-
-	public void fall() {
-		if (falling)
-			y += gravity;
-		// fall wert nach jump
 	}
 }
