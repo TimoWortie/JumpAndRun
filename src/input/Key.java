@@ -3,12 +3,25 @@ package input;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * Creator of the Key.
+ * 
+ * @author Carina Fenn
+ * @since 14.12.2018
+ * @version 1.0
+ */
+
 public class Key implements KeyListener {
 
 	private boolean left;
 	private boolean right;
 	private boolean up;
-
+	
+	/**
+	 * run method if key is pressed.
+	 * 
+	 */
+	
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_D) {
@@ -21,6 +34,11 @@ public class Key implements KeyListener {
 			up = true;
 		}
 	}
+	
+	/**
+	 * run method if key is released.
+	 * 
+	 */
 
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
