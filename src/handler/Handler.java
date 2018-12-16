@@ -28,7 +28,7 @@ public class Handler {
 
 	/**
 	 * Runs the tick() method of the generated Player In the future: Runs tick()
-	 * method wof other entities(e.g enemies) as well
+	 * method of other entities(e.g enemies) as well
 	 * 
 	 */
 	public void tick() {
@@ -59,8 +59,7 @@ public class Handler {
 	 *
 	 */
 	public void init() {
-		player = new Player(100, 250, 110, 110);
-		// player.setJumping(true);
+		player = new Player(100, 250, 100, 100);
 		blocks.add(new Stone(100, 100, 100, 100));
 		blocks.add(new Stone(100, 400, 500, 100));
 		blocks.add(new Stone(250, 300, 100, 100));

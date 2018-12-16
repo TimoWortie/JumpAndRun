@@ -41,12 +41,14 @@ public class Player extends GameObject {
 	public void render(Graphics g) {
 		g.setColor(Color.yellow);
 		g.fillRect(x, y, width, height);
-		renderBounds(g);
 		// graphic buffered image
 	}
 
 	/**
 	 * Method for the jump and the calculation of the gravity.
+	 * 
+	 * @param key
+	 *            the KeyListener responsible for the movement of the player
 	 */
 	public void calculateMovement(Key key) {
 		if (key.isRight()) {
@@ -61,6 +63,10 @@ public class Player extends GameObject {
 		}
 	}
 
+	/**
+	 * changes x and y position depending on movement in vertical and horizontal
+	 * directions
+	 */
 	public void tick() {
 		if (!right && !left) {
 			velX = 0;
@@ -74,28 +80,40 @@ public class Player extends GameObject {
 
 	/**
 	 * Method for the collision with GameObject
+	 * 
+	 * @param object
+	 *            the GameObject to detect the collision with
+	 * @return returns whether the player collides with the object or not
 	 */
-	public void checkCollision(GameObject object) {
+	public boolean checkCollision(GameObject object) {
 		if (getBottom().intersects(object.getTop())) {
 			y = object.getY() - (height - 1);
 			onGround = true;
 			jumping = false;
+			return true;
 		} else if (getTop().intersects(object.getBottom())) {
 			velY = 0;
 			y = object.getY() + height;
 			jumping = false;
+			return true;
 		} else if (getLeft().intersects(object.getRight())) {
 			x = object.getX() + (width - 1);
 			left = false;
+			return true;
 		} else if (getRight().intersects(object.getLeft())) {
 			x = object.getX() - (width - 1);
 			right = false;
+			return true;
 		}
-
+		return false;
 	}
 
 	/**
-	 * Method for the collision with GameObject
+	 * changes the movement in horizontal direction
+	 * 
+	 * @param velX
+	 *            the new movement speed in horizontal direction (xVel<0 -->
+	 *            left, xVel>0 --> right)
 	 */
 	public void setVelX(int velX) {
 		if (velX < 0) {
@@ -108,13 +126,25 @@ public class Player extends GameObject {
 		this.velX = velX;
 	}
 
+	/**
+	 * set method for boolean jumping
+	 * 
+	 * @param jumping
+	 *            the new value for this.jumping
+	 */
 	public void setJumping(boolean jumping) {
 		this.jumping = jumping;
 	}
 
-	public void setVelY(int gravity) {
-		if (gravity < 0 && !jumping && onGround) {
-			this.velY = gravity;
+	/**
+	 * changes the movement in vertical direction(used only when jumping)
+	 * 
+	 * @param velY
+	 *            the new movement speed in vertical direction
+	 */
+	public void setVelY(int velY) {
+		if (velY < 0 && !jumping && onGround) {
+			this.velY = velY;
 			onGround = false;
 		}
 	}

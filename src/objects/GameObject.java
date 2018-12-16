@@ -91,30 +91,49 @@ public abstract class GameObject {
 
 	public abstract void render(Graphics g);
 
+	/**
+	 * Gets the entire bounds of object(used in collision detection)
+	 * 
+	 * @return a rectangle of the current bounds
+	 */
 	public Rectangle getBounds() {
 		return new Rectangle(x, y, width, height);
 	}
 
+	/**
+	 * Gets the right bounds of object(used in collision detection)
+	 * 
+	 * @return a rectangle of the current right bounds
+	 */
 	public Rectangle getRight() {
 		return new Rectangle(x + width - 15, y + 5, 15, height - 10);
 	}
 
+	/**
+	 * Gets the left bounds of object(used in collision detection)
+	 * 
+	 * @return a rectangle of the current left bounds
+	 */
 	public Rectangle getLeft() {
 		return new Rectangle(x, y + 5, 15, height - 10);
 	}
 
+	/**
+	 * Gets the lower bounds of object(used in collision detection)
+	 * 
+	 * @return a rectangle of the current lower bounds
+	 */
 	public Rectangle getBottom() {
 		return new Rectangle(x, y + height - 15, width, 15);
 	}
 
+	/**
+	 * Gets the upper bounds of object(used in collision detection)
+	 * 
+	 * @return a rectangle of the current upper bounds
+	 */
 	public Rectangle getTop() {
 		return new Rectangle(x + 5, y, width - 10, 15);
-	}
-
-	public void renderBounds(Graphics g) {
-		g.setColor(Color.green);
-		g.fillRect(x + 5, y, width - 10, 15);
-		g.fillRect(x, y + height - 15, width, 15);
 	}
 
 }

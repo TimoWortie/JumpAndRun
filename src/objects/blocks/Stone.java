@@ -33,7 +33,6 @@ public class Stone extends GameObject {
 	public void render(Graphics g) {
 		g.setColor(Color.blue);
 		g.fillRect(x, y, width, height);
-		renderBounds(g);
 	}
 
 }

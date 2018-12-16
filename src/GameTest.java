@@ -111,7 +111,8 @@ class GameTest {
 
 	@Test
 	/**
-	 * Tests if the handler removes a block with the same constructor as another one
+	 * Tests if the handler removes a block with the same constructor as another
+	 * one
 	 */
 	void testDuplicateBlock() {
 		Handler testHandler = new Handler(new Key());
