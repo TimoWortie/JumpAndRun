@@ -12,7 +12,7 @@ import graphics.Spritesheet;
  */
 
 	/**
-	 * This class can either load an image file or it can load a sprite from a sprite sheet.
+	 * is needed for image processing.
 	 * 
 	 */
 
