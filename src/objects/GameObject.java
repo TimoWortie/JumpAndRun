@@ -13,6 +13,7 @@ import java.awt.Rectangle;
  */
 public abstract class GameObject {
 	protected int height, width, x, y;
+	private static int collisionFactor=4;
 
 	/**
 	 * initialization for needed components.
@@ -106,7 +107,7 @@ public abstract class GameObject {
 	 * @return a rectangle of the current right bounds
 	 */
 	public Rectangle getRight() {
-		return new Rectangle(x + width - 15, y + 5, 15, height - 10);
+		return new Rectangle(x + width - collisionFactor*3, y + collisionFactor, collisionFactor*3, height - collisionFactor*2);
 	}
 
 	/**
@@ -115,7 +116,7 @@ public abstract class GameObject {
 	 * @return a rectangle of the current left bounds
 	 */
 	public Rectangle getLeft() {
-		return new Rectangle(x, y + 5, 15, height - 10);
+		return new Rectangle(x, y + collisionFactor, collisionFactor*3, height - collisionFactor*2);
 	}
 
 	/**
@@ -124,7 +125,7 @@ public abstract class GameObject {
 	 * @return a rectangle of the current lower bounds
 	 */
 	public Rectangle getBottom() {
-		return new Rectangle(x, y + height - 15, width, 15);
+		return new Rectangle(x, y + height -collisionFactor*3, width, collisionFactor*3);
 	}
 
 	/**
@@ -133,7 +134,16 @@ public abstract class GameObject {
 	 * @return a rectangle of the current upper bounds
 	 */
 	public Rectangle getTop() {
-		return new Rectangle(x + 5, y, width - 10, 15);
+		return new Rectangle(x + collisionFactor, y, width - collisionFactor*2, collisionFactor*3);
+	}
+	
+	
+	public void renderCollision(Graphics g){
+		g.setColor(Color.red);
+		g.fillRect(x+collisionFactor, y, width-collisionFactor*2, collisionFactor*3);
+		g.fillRect(x, y+height-collisionFactor*3, width-collisionFactor*2, collisionFactor*3);
+		g.fillRect(x, y+collisionFactor, collisionFactor*3, height-collisionFactor*2);
+		g.fillRect(x+width-collisionFactor*3, y+collisionFactor, collisionFactor*3, height-collisionFactor*2);
 	}
 
 }

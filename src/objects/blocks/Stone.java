@@ -1,9 +1,9 @@
 package objects.blocks;
 
 import java.awt.Color;
-
 import java.awt.Graphics;
 
+import graphics.Sprite;
 import objects.GameObject;
 
 /**
@@ -14,6 +14,8 @@ import objects.GameObject;
  * @version 1.0
  */
 public class Stone extends GameObject {
+	private Sprite sprite=new Sprite(3,2,1,1);
+	
 	/**
 	 * Needed components for the stone, that were initialized in the class
 	 * GameObject.
@@ -31,8 +33,8 @@ public class Stone extends GameObject {
 	 */
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.blue);
-		g.fillRect(x, y, width, height);
+		g.drawImage(sprite.getBufferedImage(),x, y, width, height,null);
+//		renderCollision(g);
 	}
 
 }

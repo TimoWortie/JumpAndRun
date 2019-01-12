@@ -4,7 +4,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import graphics.Sprite;
 import input.Key;
+import level.LevelGenerator;
 import objects.GameObject;
 import objects.blocks.Stone;
 import objects.player.Player;
@@ -21,6 +23,7 @@ public class Handler {
 	private ArrayList<GameObject> blocks = new ArrayList<>();
 	private Player player;
 	private Key key;
+	private LevelGenerator gen;
 
 	public Handler(Key key) {
 		this.key = key;
@@ -59,10 +62,13 @@ public class Handler {
 	 *
 	 */
 	public void init() {
-		player = new Player(100, 250, 100, 100);
-		blocks.add(new Stone(100, 100, 100, 100));
-		blocks.add(new Stone(100, 400, 500, 100));
-		blocks.add(new Stone(250, 300, 100, 100));
+		Sprite.init();
+		gen=new LevelGenerator(0, 0, 1280, 790, 48, 48);
+		blocks=gen.getLevel();
+		player = new Player(100, 250, 48, 48);
+		blocks.add(new Stone(100, 100, 48, 48));
+		blocks.add(new Stone(100, 400, 48, 48));
+		blocks.add(new Stone(250, 300, 48, 48));
 
 	}
 

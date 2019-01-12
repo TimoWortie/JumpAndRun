@@ -3,6 +3,7 @@ package objects.player;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import graphics.Sprite;
 import input.Key;
 import objects.GameObject;
 
@@ -21,6 +22,11 @@ public class Player extends GameObject {
 	private boolean jumping = false;
 	private boolean onGround = false;
 	private boolean left, right;
+	private int lastDirection = 0;
+	private Sprite[] walkingSprites = new Sprite[10];
+	private Sprite standingSpriteLeft, standingSpriteRight, jumpingRightSprite, jumpingLeftSprite, fallingRightSprite,
+			fallingLeftSprite;
+	private int timer = 0;
 
 	/**
 	 * Needed components for the player, that were initialized in the class
@@ -28,6 +34,15 @@ public class Player extends GameObject {
 	 */
 	public Player(int x, int y, int width, int height) {
 		super(x, y, width, height);
+		for (int i = 0; i < walkingSprites.length; i++) {
+			walkingSprites[i] = new Sprite(i + 1, 1, 1, 1);
+		}
+		standingSpriteRight = new Sprite(1, 1, 1, 1);
+		standingSpriteLeft = new Sprite(6, 1, 1, 1);
+		jumpingRightSprite = new Sprite(12, 1, 1, 1);
+		jumpingLeftSprite = new Sprite(13, 1, 1, 1);
+		fallingRightSprite = new Sprite(14, 1, 1, 1);
+		fallingLeftSprite = new Sprite(15, 1, 1, 1);
 	}
 
 	/**
@@ -39,9 +54,32 @@ public class Player extends GameObject {
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.yellow);
-		g.fillRect(x, y, width, height);
-		// graphic buffered image
+		int spriteIndex = (int) Math.floor(timer / 6);
+		if (velY < 0) {
+			if (velX > 0) {
+				g.drawImage(jumpingRightSprite.getBufferedImage(), x, y, width, height, null);
+			} else {
+				g.drawImage(jumpingLeftSprite.getBufferedImage(), x, y, width, height, null);
+			}
+		} else if (velY > 0 && !onGround) {
+			if (velX > 0) {
+				g.drawImage(fallingRightSprite.getBufferedImage(), x, y, width, height, null);
+			} else {
+				g.drawImage(fallingLeftSprite.getBufferedImage(), x, y, width, height, null);
+			}
+		} else if (velX > 0) {
+			g.drawImage(walkingSprites[spriteIndex].getBufferedImage(), x, y, width, height, null);
+			lastDirection = 1;
+		} else if (velX < 0) {
+			g.drawImage(walkingSprites[spriteIndex + 5].getBufferedImage(), x, y, width, height, null);
+			lastDirection = -1;
+		} else {
+			if (lastDirection == 1) {
+				g.drawImage(standingSpriteRight.getBufferedImage(), x, y, width, height, null);
+			} else {
+				g.drawImage(standingSpriteLeft.getBufferedImage(), x, y, width, height, null);
+			}
+		}
 	}
 
 	/**
@@ -68,6 +106,10 @@ public class Player extends GameObject {
 	 * directions
 	 */
 	public void tick() {
+		timer++;
+		if (timer == 30) {
+			timer = 0;
+		}
 		if (!right && !left) {
 			velX = 0;
 		}
@@ -87,7 +129,9 @@ public class Player extends GameObject {
 	 */
 	public boolean checkCollision(GameObject object) {
 		if (getBottom().intersects(object.getTop())) {
-			y = object.getY() - (height - 1);
+			y = object.getY() - (height);
+			if (velY > 0)
+				velY = 0;
 			onGround = true;
 			jumping = false;
 			return true;

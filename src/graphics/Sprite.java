@@ -18,14 +18,18 @@ import graphics.Spritesheet;
 
 public class Sprite {
 
-	public Spritesheet sheet;
-	public BufferedImage image;
+	private static Spritesheet sheet;
+	private BufferedImage image;
 
-	public Sprite(Spritesheet sheet, int x, int y, int width, int height) {
+	public Sprite(int x, int y, int width, int height) {
 		image = sheet.getSprite(x, y, width, height);
 	}
 
 	public BufferedImage getBufferedImage() {
 		return image;
+	}
+	
+	public static void init(){
+		sheet=new Spritesheet("res/Spritesheet.png");
 	}
 }
