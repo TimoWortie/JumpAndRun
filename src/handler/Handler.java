@@ -57,18 +57,19 @@ public class Handler {
 	}
 
 	/**
-	 * Initializes player and blocks. This method is only executed once at the
+	 * Initializes player and level. This method is only executed once at the
 	 * start of the game
 	 *
 	 */
 	public void init() {
 		Sprite.init();
-		gen=new LevelGenerator(0, 0, 1280, 790, 48, 48);
+		gen=new LevelGenerator(1280, 790, 48, 48);
+		player=new Player(100, 100, 48, 48);
+		gen.createStairsDown(1, 5, 4);
+		gen.createStairsUp(10,10,5);
+		gen.addBlock(4, 10);
+		gen.createPlattform(15, 11, 6, 3);
 		blocks=gen.getLevel();
-		player = new Player(100, 250, 48, 48);
-		blocks.add(new Stone(100, 100, 48, 48));
-		blocks.add(new Stone(100, 400, 48, 48));
-		blocks.add(new Stone(250, 300, 48, 48));
 
 	}
 

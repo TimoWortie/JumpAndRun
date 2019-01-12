@@ -125,7 +125,7 @@ public abstract class GameObject {
 	 * @return a rectangle of the current lower bounds
 	 */
 	public Rectangle getBottom() {
-		return new Rectangle(x, y + height -collisionFactor*3, width, collisionFactor*3);
+		return new Rectangle(x+collisionFactor, y + height -collisionFactor*3, width-2*collisionFactor, collisionFactor*3);
 	}
 
 	/**
@@ -141,7 +141,7 @@ public abstract class GameObject {
 	public void renderCollision(Graphics g){
 		g.setColor(Color.red);
 		g.fillRect(x+collisionFactor, y, width-collisionFactor*2, collisionFactor*3);
-		g.fillRect(x, y+height-collisionFactor*3, width-collisionFactor*2, collisionFactor*3);
+		g.fillRect(x+collisionFactor, y + height -collisionFactor*3, width-2*collisionFactor, collisionFactor*3);
 		g.fillRect(x, y+collisionFactor, collisionFactor*3, height-collisionFactor*2);
 		g.fillRect(x+width-collisionFactor*3, y+collisionFactor, collisionFactor*3, height-collisionFactor*2);
 	}

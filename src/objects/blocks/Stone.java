@@ -14,7 +14,7 @@ import objects.GameObject;
  * @version 1.0
  */
 public class Stone extends GameObject {
-	private Sprite sprite=new Sprite(3,2,1,1);
+	private Sprite sprite=new Sprite(2,1,1,1);
 	
 	/**
 	 * Needed components for the stone, that were initialized in the class

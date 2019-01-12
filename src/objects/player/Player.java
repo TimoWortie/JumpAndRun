@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import graphics.Sprite;
 import input.Key;
 import objects.GameObject;
+import sun.java2d.pipe.RenderBuffer;
 
 /**
  * Creator of the Player.
@@ -35,14 +36,14 @@ public class Player extends GameObject {
 	public Player(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		for (int i = 0; i < walkingSprites.length; i++) {
-			walkingSprites[i] = new Sprite(i + 1, 1, 1, 1);
+			walkingSprites[i] = new Sprite(i, 0, 1, 1);
 		}
-		standingSpriteRight = new Sprite(1, 1, 1, 1);
-		standingSpriteLeft = new Sprite(6, 1, 1, 1);
-		jumpingRightSprite = new Sprite(12, 1, 1, 1);
-		jumpingLeftSprite = new Sprite(13, 1, 1, 1);
-		fallingRightSprite = new Sprite(14, 1, 1, 1);
-		fallingLeftSprite = new Sprite(15, 1, 1, 1);
+		standingSpriteRight = new Sprite(0, 0, 1, 1);
+		standingSpriteLeft = new Sprite(5, 0, 1, 1);
+		jumpingRightSprite = new Sprite(11, 0, 1, 1);
+		jumpingLeftSprite = new Sprite(12, 0, 1, 1);
+		fallingRightSprite = new Sprite(13, 0, 1, 1);
+		fallingLeftSprite = new Sprite(14, 0, 1, 1);
 	}
 
 	/**
@@ -59,13 +60,21 @@ public class Player extends GameObject {
 			if (velX > 0) {
 				g.drawImage(jumpingRightSprite.getBufferedImage(), x, y, width, height, null);
 			} else {
-				g.drawImage(jumpingLeftSprite.getBufferedImage(), x, y, width, height, null);
+				if(lastDirection!=1){
+					g.drawImage(jumpingLeftSprite.getBufferedImage(), x, y, width, height, null);
+				}else{
+					g.drawImage(jumpingRightSprite.getBufferedImage(), x, y, width, height, null);
+				}
 			}
 		} else if (velY > 0 && !onGround) {
 			if (velX > 0) {
 				g.drawImage(fallingRightSprite.getBufferedImage(), x, y, width, height, null);
 			} else {
-				g.drawImage(fallingLeftSprite.getBufferedImage(), x, y, width, height, null);
+				if(lastDirection!=1){
+					g.drawImage(fallingLeftSprite.getBufferedImage(), x, y, width, height, null);
+				}else{
+					g.drawImage(fallingRightSprite.getBufferedImage(), x, y, width, height, null);
+				}
 			}
 		} else if (velX > 0) {
 			g.drawImage(walkingSprites[spriteIndex].getBufferedImage(), x, y, width, height, null);
@@ -80,6 +89,7 @@ public class Player extends GameObject {
 				g.drawImage(standingSpriteLeft.getBufferedImage(), x, y, width, height, null);
 			}
 		}
+//		renderCollision(g);
 	}
 
 	/**
