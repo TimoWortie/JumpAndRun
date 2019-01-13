@@ -1,6 +1,5 @@
 package objects.blocks;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 import graphics.Sprite;

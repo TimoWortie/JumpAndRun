@@ -31,7 +31,7 @@ public class Game extends Canvas implements Runnable {
 	public void init() {
 		handler = new Handler(key);
 		addKeyListener(key);
-		handler.init();
+		handler.init(this.getWidth(),this.getHeight());
 	}
 
 	@Override /**
@@ -73,7 +73,6 @@ public class Game extends Canvas implements Runnable {
 		}
 		Graphics g = bs.getDrawGraphics();
 		// -------------------
-		// For test purpose only
 		g.setColor(Color.white);
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		// -------------------

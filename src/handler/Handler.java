@@ -15,8 +15,8 @@ import objects.player.Player;
  * Handling of Player and Blocks for the Game.
  * 
  * @author Timo Wortmann
- * @since 27.11.2018
- * @version 1.0
+ * @since 12.01.2019
+ * @version 1.3
  */
 public class Handler {
 
@@ -25,13 +25,19 @@ public class Handler {
 	private Key key;
 	private LevelGenerator gen;
 
+	/**
+	 * Constructor for the handler.
+	 * 
+	 * @param key
+	 *            the KeyInput used for the player
+	 */
 	public Handler(Key key) {
 		this.key = key;
 	}
 
 	/**
-	 * Runs the tick() method of the generated Player In the future: Runs tick()
-	 * method of other entities(e.g enemies) as well
+	 * Runs the tick method of the player and executes the collision and
+	 * movement calculation methods of the player
 	 * 
 	 */
 	public void tick() {
@@ -57,19 +63,22 @@ public class Handler {
 	}
 
 	/**
-	 * Initializes player and level. This method is only executed once at the
-	 * start of the game
+	 * Initializes player, Spritesheet(per Sprite.init()) and level. This method
+	 * is only executed once at the start of the game
+	 * @param levelWidth	the width of the level
+	 * @param levelHeight the height of the level
 	 *
 	 */
-	public void init() {
+	public void init(int levelWidth, int levelHeight) {
 		Sprite.init();
-		gen=new LevelGenerator(1280, 790, 48, 48);
-		player=new Player(100, 100, 48, 48);
+		gen = new LevelGenerator(levelWidth, levelHeight, 48, 48);
+		player = new Player(100, 100, 48, 48);
 		gen.createStairsDown(1, 5, 4);
-		gen.createStairsUp(10,10,5);
+		gen.createStairsUp(10, 10, 5);
 		gen.addBlock(4, 10);
-		gen.createPlattform(15, 11, 6, 3);
-		blocks=gen.getLevel();
+		gen.createPlattform(16, 11, 6, 3);
+		//more blocks can be added here
+		blocks = gen.getLevel();
 
 	}
 

@@ -137,7 +137,11 @@ public abstract class GameObject {
 		return new Rectangle(x + collisionFactor, y, width - collisionFactor*2, collisionFactor*3);
 	}
 	
-	
+	/**
+	 * Draws the collision hitboxes of the GameObject. Mainly used for Debugging
+	 * 
+	 * @param g the Graphics object to draw on
+	 */
 	public void renderCollision(Graphics g){
 		g.setColor(Color.red);
 		g.fillRect(x+collisionFactor, y, width-collisionFactor*2, collisionFactor*3);

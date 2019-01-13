@@ -1,3 +1,4 @@
+package tests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -18,22 +19,22 @@ import ui.Game;
  * @since 01.12.2018
  * @version 1.0
  */
-class GameTest {
+class TestGame {
 
-	@Test
 	/**
 	 * Tests if the game stops properly and if the Thread is closed on shutdown
 	 */
+	@Test
 	void testShutdown() {
 		Game game = new Game();
 		game.start();
 		game.shutdown();
 	}
 
-	@Test
 	/**
 	 * Replication of the game loop Tests if the game runs 60 times per second
 	 */
+	@Test
 	void testFps() {
 		boolean running = true;
 		double tickCount = 60.0;
@@ -83,10 +84,10 @@ class GameTest {
 
 	}
 
-	@Test
 	/**
 	 * Tests if the game adds and removes an Object properly
 	 */
+	@Test
 	void testHandleObject() {
 		Handler testHandler = new Handler(new Key());
 		GameObject block = new TestBlock(0, 0, 0, 0);
@@ -99,21 +100,21 @@ class GameTest {
 				"The block count of " + testHandler.getBlocksCount() + " didnt match the expected " + blockCount + ".");
 	}
 
-	@Test
 	/**
 	 * Tests for an error when trying to remove a block that is not there
 	 */
+	@Test
 	void testRemoveBlockOnEmptyHandler() {
 		Handler testHandler = new Handler(new Key());
 		GameObject block = new TestBlock(0, 0, 0, 0);
 		testHandler.removeBlock(block);
 	}
 
-	@Test
 	/**
 	 * Tests if the handler removes a block with the same constructor as another
 	 * one
 	 */
+	@Test
 	void testDuplicateBlock() {
 		Handler testHandler = new Handler(new Key());
 		GameObject block = new TestBlock(0, 0, 0, 0);

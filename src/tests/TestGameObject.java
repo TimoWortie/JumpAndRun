@@ -1,16 +1,23 @@
+package tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
 import objects.blocks.Stone;
-
+/**
+ * Unit test for Game and Handler
+ * 
+ * @author Maximilian Ott
+ * @since 01.12.2018
+ * @version 1.0
+ */
 class TestGameObject {
 	/**
 	 * Tests if setters and getters can function together.
 	 */
 	@Test
-	public void test() {
+	public void testHeightSetter() {
 		Stone gm = new Stone(0, 0, 0, 0);
 		gm.setHeight(200);
 		assertEquals(200, gm.getHeight());
@@ -22,7 +29,7 @@ class TestGameObject {
 	 */
 
 	@Test
-	public void test2() {
+	public void testConstructorWithY() {
 		Stone gm = new Stone(100, 100, 0, 0);
 		assertEquals(100, gm.getY());
 
@@ -32,7 +39,7 @@ class TestGameObject {
 	 * Tests if setters and getters can function together.
 	 */
 	@Test
-	public void test3() {
+	public void testWidthSetter() {
 		Stone gm = new Stone(0, 0, 0, 0);
 		gm.setWidth(200);
 		assertEquals(200, gm.getWidth());
@@ -42,7 +49,7 @@ class TestGameObject {
 	 * Tests if setters and getters can function together.
 	 */
 	@Test
-	public void test4() {
+	public void testXSetter() {
 		Stone gm = new Stone(0, 0, 0, 0);
 		gm.setX(200);
 		assertEquals(200, gm.getX());
@@ -52,7 +59,7 @@ class TestGameObject {
 	 * Tests if setters and getters can function together.
 	 */
 	@Test
-	public void test5() {
+	public void testYSetter() {
 		Stone gm = new Stone(0, 0, 0, 0);
 		gm.setY(200);
 		assertEquals(200, gm.getY());
@@ -63,7 +70,7 @@ class TestGameObject {
 	 */
 
 	@Test
-	public void test6() {
+	public void testConstructorWithX() {
 		Stone gm = new Stone(100, 100, 100, 100);
 		assertEquals(100, gm.getX());
 	}
@@ -73,7 +80,7 @@ class TestGameObject {
 	 */
 
 	@Test
-	public void test7() {
+	public void testConstructorWithWidth() {
 		Stone gm = new Stone(100, 100, 100, 100);
 		assertEquals(100, gm.getWidth());
 	}
@@ -83,7 +90,7 @@ class TestGameObject {
 	 */
 
 	@Test
-	public void test8() {
+	public void testConstructorWithHeight() {
 		Stone gm = new Stone(100, 100, 100, 100);
 		assertEquals(100, gm.getHeight());
 	}

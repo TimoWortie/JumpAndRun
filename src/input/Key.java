@@ -16,12 +16,12 @@ public class Key implements KeyListener {
 	private boolean left;
 	private boolean right;
 	private boolean up;
-	
+
 	/**
 	 * run method if key is pressed.
 	 * 
 	 */
-	
+
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_D) {
@@ -34,7 +34,7 @@ public class Key implements KeyListener {
 			up = true;
 		}
 	}
-	
+
 	/**
 	 * run method if key is released.
 	 * 
@@ -53,18 +53,36 @@ public class Key implements KeyListener {
 		}
 	}
 
+	/**
+	 * Returns whether the player should walk left
+	 * 
+	 * @return true while a is pressed
+	 */
 	public boolean isLeft() {
 		return left;
 	}
 
+	/**
+	 * Returns whether the player should walk right
+	 * 
+	 * @return true while d is pressed
+	 */
 	public boolean isRight() {
 		return right;
 	}
 
+	/**
+	 * method from interface KeyListener. not used.
+	 */
 	public void keyTyped(KeyEvent e) {
 
 	}
 
+	/**
+	 * Returns whether the player should jump
+	 * 
+	 * @return true while w is pressed
+	 */
 	public boolean isUp() {
 		return this.up;
 	}
