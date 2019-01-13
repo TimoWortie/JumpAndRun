@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import graphics.Sprite;
 import objects.blocks.Stone;
+
 /**
  * Unit test for Game and Handler
  * 
@@ -18,6 +20,7 @@ class TestGameObject {
 	 */
 	@Test
 	public void testHeightSetter() {
+		Sprite.init();
 		Stone gm = new Stone(0, 0, 0, 0);
 		gm.setHeight(200);
 		assertEquals(200, gm.getHeight());
@@ -30,6 +33,7 @@ class TestGameObject {
 
 	@Test
 	public void testConstructorWithY() {
+		Sprite.init();
 		Stone gm = new Stone(100, 100, 0, 0);
 		assertEquals(100, gm.getY());
 
@@ -40,6 +44,7 @@ class TestGameObject {
 	 */
 	@Test
 	public void testWidthSetter() {
+		Sprite.init();
 		Stone gm = new Stone(0, 0, 0, 0);
 		gm.setWidth(200);
 		assertEquals(200, gm.getWidth());
@@ -50,6 +55,7 @@ class TestGameObject {
 	 */
 	@Test
 	public void testXSetter() {
+		Sprite.init();
 		Stone gm = new Stone(0, 0, 0, 0);
 		gm.setX(200);
 		assertEquals(200, gm.getX());
@@ -60,6 +66,7 @@ class TestGameObject {
 	 */
 	@Test
 	public void testYSetter() {
+		Sprite.init();
 		Stone gm = new Stone(0, 0, 0, 0);
 		gm.setY(200);
 		assertEquals(200, gm.getY());
@@ -71,6 +78,7 @@ class TestGameObject {
 
 	@Test
 	public void testConstructorWithX() {
+		Sprite.init();
 		Stone gm = new Stone(100, 100, 100, 100);
 		assertEquals(100, gm.getX());
 	}
@@ -81,6 +89,7 @@ class TestGameObject {
 
 	@Test
 	public void testConstructorWithWidth() {
+		Sprite.init();
 		Stone gm = new Stone(100, 100, 100, 100);
 		assertEquals(100, gm.getWidth());
 	}
@@ -91,6 +100,7 @@ class TestGameObject {
 
 	@Test
 	public void testConstructorWithHeight() {
+		Sprite.init();
 		Stone gm = new Stone(100, 100, 100, 100);
 		assertEquals(100, gm.getHeight());
 	}

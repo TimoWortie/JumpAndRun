@@ -28,16 +28,15 @@ public class Handler {
 	/**
 	 * Constructor for the handler.
 	 * 
-	 * @param key
-	 *            the KeyInput used for the player
+	 * @param key the KeyInput used for the player
 	 */
 	public Handler(Key key) {
 		this.key = key;
 	}
 
 	/**
-	 * Runs the tick method of the player and executes the collision and
-	 * movement calculation methods of the player
+	 * Runs the tick method of the player and executes the collision and movement
+	 * calculation methods of the player
 	 * 
 	 */
 	public void tick() {
@@ -51,8 +50,7 @@ public class Handler {
 	/**
 	 * draws the Player and all Blocks
 	 * 
-	 * @param g
-	 *            Graphics object where everything will be drawn on
+	 * @param g Graphics object where everything will be drawn on
 	 */
 	public void render(Graphics g) {
 		for (GameObject bl : blocks) {
@@ -63,9 +61,10 @@ public class Handler {
 	}
 
 	/**
-	 * Initializes player, Spritesheet(per Sprite.init()) and level. This method
-	 * is only executed once at the start of the game
-	 * @param levelWidth	the width of the level
+	 * Initializes player, Spritesheet(per Sprite.init()) and level. This method is
+	 * only executed once at the start of the game
+	 * 
+	 * @param levelWidth  the width of the level
 	 * @param levelHeight the height of the level
 	 *
 	 */
@@ -77,7 +76,7 @@ public class Handler {
 		gen.createStairsUp(10, 10, 5);
 		gen.addBlock(4, 10);
 		gen.createPlattform(16, 11, 6, 3);
-		//more blocks can be added here
+		// more blocks can be added here
 		blocks = gen.getLevel();
 
 	}
@@ -85,8 +84,7 @@ public class Handler {
 	/**
 	 * Adds a block to the managed objects
 	 *
-	 * @param block
-	 *            block to add
+	 * @param block block to add
 	 */
 	public void addBlock(GameObject block) {
 		blocks.add(block);
@@ -95,8 +93,7 @@ public class Handler {
 	/**
 	 * Removes a block from the managed objects
 	 *
-	 * @param block
-	 *            block to remove
+	 * @param block block to remove
 	 */
 	public void removeBlock(GameObject block) {
 		blocks.remove(block);

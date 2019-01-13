@@ -15,8 +15,7 @@ public class Main {
 	/**
 	 * Main program opens a GUI and starts a new game
 	 * 
-	 * @param args
-	 *            Commandline parameter
+	 * @param args Commandline parameter
 	 */
 	public static void main(String[] args) {
 		Game game = new Game();

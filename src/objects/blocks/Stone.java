@@ -13,8 +13,8 @@ import objects.GameObject;
  * @version 1.0
  */
 public class Stone extends GameObject {
-	private Sprite sprite=new Sprite(2,1,1,1);
-	
+	private Sprite sprite = new Sprite(2, 1, 1, 1);
+
 	/**
 	 * Needed components for the stone, that were initialized in the class
 	 * GameObject.
@@ -27,12 +27,11 @@ public class Stone extends GameObject {
 	/**
 	 * draws the Block
 	 * 
-	 * @param g
-	 *            Graphics object where everything will be drawn on
+	 * @param g Graphics object where everything will be drawn on
 	 */
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(sprite.getBufferedImage(),x, y, width, height,null);
+		g.drawImage(sprite.getBufferedImage(), x, y, width, height, null);
 //		renderCollision(g);
 	}
 

@@ -111,8 +111,7 @@ class TestGame {
 	}
 
 	/**
-	 * Tests if the handler removes a block with the same constructor as another
-	 * one
+	 * Tests if the handler removes a block with the same constructor as another one
 	 */
 	@Test
 	void testDuplicateBlock() {

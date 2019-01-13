@@ -1,4 +1,5 @@
 package tests;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
@@ -11,11 +12,12 @@ import objects.GameObject;
  * Unit test for Game and Handler
  * 
  * @author Maximilian Ott
+ * @author Timo Wortmann
  * @since 12.01.2019
  * @version 1.0
  */
 public class TestLevelGenerator {
-	
+
 	/**
 	 * Tests if the bounds of the level are generated properly.
 	 */
@@ -25,7 +27,7 @@ public class TestLevelGenerator {
 		LevelGenerator gen = new LevelGenerator(10, 10, 10, 10);
 		assertEquals(1, gen.getLevel().size());
 	}
-	
+
 	/**
 	 * Tests whether the generator adds duplicate blocks.
 	 */
@@ -36,9 +38,10 @@ public class TestLevelGenerator {
 		gen.addBlock(0, 0);
 		assertEquals(1, gen.getLevel().size());
 	}
-	
+
 	/**
-	 * Tests if generator adds the block at the right position and with the right width and height.
+	 * Tests if generator adds the block at the right position and with the right
+	 * width and height.
 	 */
 	@Test
 	void testAddBlock() {
@@ -52,10 +55,10 @@ public class TestLevelGenerator {
 		assertEquals(1, gen.getLevel().get(gen.getLevel().size() - 1).getHeight());
 		assertEquals(previousLength + 1, gen.getLevel().size());
 	}
-	
-	
+
 	/**
-	 * Tests if the generator adds a new plattform of blocks properly and checks the coordinates of every block added.
+	 * Tests if the generator adds a new plattform of blocks properly and checks the
+	 * coordinates of every block added.
 	 */
 	@Test
 	void testCreatePlattform() {

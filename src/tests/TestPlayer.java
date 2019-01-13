@@ -19,8 +19,8 @@ import objects.player.Player;
  */
 public class TestPlayer {
 	/**
-	 * tests if the Collision is working when the block and player are in the
-	 * same place
+	 * tests if the Collision is working when the block and player are in the same
+	 * place
 	 */
 	@Test
 	void testCollisionGeneral() {
@@ -31,8 +31,7 @@ public class TestPlayer {
 	}
 
 	/**
-	 * tests if the collision is working, when the player stans on top of a
-	 * block
+	 * tests if the collision is working, when the player stans on top of a block
 	 */
 	@Test
 	void testCollisionDown() {

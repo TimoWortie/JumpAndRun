@@ -9,6 +9,7 @@ import objects.blocks.*;
  * Creator of the LevelGenerator.
  * 
  * @author Maximilian Ott
+ * @author Timo Wortmann
  * @since 11.01.2019
  * @version 1.0
  */
@@ -20,14 +21,10 @@ public class LevelGenerator {
 	/**
 	 * Constructor for the LevelGenerator
 	 * 
-	 * @param levelWidth
-	 *            the height of the entire level
-	 * @param levelHeight
-	 *            the width of the entire level
-	 * @param blockHeight
-	 *            the height of a single block
-	 * @param blockWidth
-	 *            the width of a single block
+	 * @param levelWidth  the height of the entire level
+	 * @param levelHeight the width of the entire level
+	 * @param blockHeight the height of a single block
+	 * @param blockWidth  the width of a single block
 	 */
 	public LevelGenerator(int levelWidth, int levelHeight, int blockHeight, int blockWidth) {
 		this.levelWidth = levelWidth;
@@ -38,8 +35,8 @@ public class LevelGenerator {
 	}
 
 	/**
-	 * creates a box of stones around the current level so that the player can
-	 * not walk out of bounds.
+	 * creates a box of stones around the current level so that the player can not
+	 * walk out of bounds.
 	 * 
 	 */
 	private void createOuterBounds() {
@@ -54,13 +51,13 @@ public class LevelGenerator {
 			blocks.add(new Stone(i * blockWidth, levelHeight - blockHeight, blockWidth, blockHeight));
 		}
 	}
-	
-	
+
 	/**
 	 * Creates stairs of blocks leading downwards
+	 * 
 	 * @param startX the x coordinate of the upper left block
 	 * @param startY the y coordinate of the upper left block
-	 * @param steps	number of steps
+	 * @param steps  number of steps
 	 */
 	public void createStairsDown(int startX, int startY, int steps) {
 		for (int i = 0; i * blockWidth + startX * blockWidth < levelWidth && i < steps; i++) {
@@ -75,12 +72,13 @@ public class LevelGenerator {
 			}
 		}
 	}
-	
+
 	/**
 	 * Creates stairs of blocks leading upwards.
+	 * 
 	 * @param startX the x coordinate of the lower left block
 	 * @param startY the y coordinate of the lower left block
-	 * @param steps	number of steps
+	 * @param steps  number of steps
 	 */
 	public void createStairsUp(int x, int y, int steps) {
 		for (int i = 0; i * blockWidth + x * blockWidth < levelWidth && i < steps; i++) {
@@ -95,9 +93,10 @@ public class LevelGenerator {
 			}
 		}
 	}
-	
+
 	/**
 	 * Adds a single block to the level
+	 * 
 	 * @param x the x coordinate of the block
 	 * @param y the y coordinate of the block
 	 */
@@ -109,14 +108,14 @@ public class LevelGenerator {
 			}
 		}
 	}
-	
-	
+
 	/**
 	 * Creates a platform in the shape of a rectangle made out of blocks
-	 * @param x the x coordinate of the upper left block
-	 * @param y	the y coordinate of the upper left block
-	 * @param width	the amount of block the platform is wide
-	 * @param height	the amount of block the platform is high
+	 * 
+	 * @param x      the x coordinate of the upper left block
+	 * @param y      the y coordinate of the upper left block
+	 * @param width  the amount of block the platform is wide
+	 * @param height the amount of block the platform is high
 	 */
 	public void createPlattform(int x, int y, int width, int height) {
 		for (int i = 0; i < width; i++) {
@@ -129,19 +128,19 @@ public class LevelGenerator {
 			}
 		}
 	}
-	
-	
+
 	/**
 	 * returns the blocks for use in the Handler
+	 * 
 	 * @return the ArrayList of stored GameObjects
 	 */
 	public ArrayList<GameObject> getLevel() {
 		return blocks;
 	}
 
-	
 	/**
 	 * Tests whether a block is already added to the level
+	 * 
 	 * @param block the block to test for
 	 * @return true if the block is already added; false if not
 	 */

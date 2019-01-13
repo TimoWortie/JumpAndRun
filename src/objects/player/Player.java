@@ -49,8 +49,7 @@ public class Player extends GameObject {
 	/**
 	 * draws the Player
 	 * 
-	 * @param g
-	 *            Graphics object where everything will be drawn on
+	 * @param g Graphics object where everything will be drawn on
 	 */
 
 	@Override
@@ -60,9 +59,9 @@ public class Player extends GameObject {
 			if (velX > 0) {
 				g.drawImage(jumpingRightSprite.getBufferedImage(), x, y, width, height, null);
 			} else {
-				if(lastDirection!=1){
+				if (lastDirection != 1) {
 					g.drawImage(jumpingLeftSprite.getBufferedImage(), x, y, width, height, null);
-				}else{
+				} else {
 					g.drawImage(jumpingRightSprite.getBufferedImage(), x, y, width, height, null);
 				}
 			}
@@ -70,9 +69,9 @@ public class Player extends GameObject {
 			if (velX > 0) {
 				g.drawImage(fallingRightSprite.getBufferedImage(), x, y, width, height, null);
 			} else {
-				if(lastDirection!=1){
+				if (lastDirection != 1) {
 					g.drawImage(fallingLeftSprite.getBufferedImage(), x, y, width, height, null);
-				}else{
+				} else {
 					g.drawImage(fallingRightSprite.getBufferedImage(), x, y, width, height, null);
 				}
 			}
@@ -95,8 +94,7 @@ public class Player extends GameObject {
 	/**
 	 * Method for the jump and the calculation of the gravity.
 	 * 
-	 * @param key
-	 *            the KeyListener responsible for the movement of the player
+	 * @param key the KeyListener responsible for the movement of the player
 	 */
 	public void calculateMovement(Key key) {
 		if (key.isRight()) {
@@ -133,8 +131,7 @@ public class Player extends GameObject {
 	/**
 	 * Method for the collision with GameObject
 	 * 
-	 * @param object
-	 *            the GameObject to detect the collision with
+	 * @param object the GameObject to detect the collision with
 	 * @return returns whether the player collides with the object or not
 	 */
 	public boolean checkCollision(GameObject object) {
@@ -165,9 +162,8 @@ public class Player extends GameObject {
 	/**
 	 * changes the movement in horizontal direction
 	 * 
-	 * @param velX
-	 *            the new movement speed in horizontal direction (xVel<0 -->
-	 *            left, xVel>0 --> right)
+	 * @param velX the new movement speed in horizontal direction (xVel<0 --> left,
+	 *             xVel>0 --> right)
 	 */
 	public void setVelX(int velX) {
 		if (velX < 0) {
@@ -183,8 +179,7 @@ public class Player extends GameObject {
 	/**
 	 * set method for boolean jumping
 	 * 
-	 * @param jumping
-	 *            the new value for this.jumping
+	 * @param jumping the new value for this.jumping
 	 */
 	public void setJumping(boolean jumping) {
 		this.jumping = jumping;
@@ -193,8 +188,7 @@ public class Player extends GameObject {
 	/**
 	 * changes the movement in vertical direction(used only when jumping)
 	 * 
-	 * @param velY
-	 *            the new movement speed in vertical direction
+	 * @param velY the new movement speed in vertical direction
 	 */
 	public void setVelY(int velY) {
 		if (velY < 0 && !jumping && onGround) {
