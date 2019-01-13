@@ -73,9 +73,9 @@ public class Handler {
 		gen = new LevelGenerator(levelWidth, levelHeight, 48, 48);
 		player = new Player(100, 100, 48, 48);
 		gen.createStairsDown(1, 5, 4);
-		gen.createStairsUp(10, 10, 5);
-		gen.addBlock(4, 10);
-		gen.createPlattform(16, 11, 6, 3);
+		gen.createStairsUp(10, 12, 5);
+		gen.addBlock(5, 10);
+		gen.createPlattform(16, 5, 6, 3);
 		// more blocks can be added here
 		blocks = gen.getLevel();
 
