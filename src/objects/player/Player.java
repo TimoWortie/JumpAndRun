@@ -17,7 +17,8 @@ import sun.java2d.pipe.RenderBuffer;
  */
 
 public class Player extends GameObject {
-
+	private int walkingSpeed=5;
+	private int jumpSpeed=-20;
 	private int velX = 0;
 	private int velY = 5;
 	private boolean jumping = false;
@@ -25,7 +26,7 @@ public class Player extends GameObject {
 	private boolean left, right;
 	private int lastDirection = 0;
 	private Sprite[] walkingSprites = new Sprite[10];
-	private Sprite standingSpriteLeft, standingSpriteRight, jumpingRightSprite, jumpingLeftSprite, fallingRightSprite,
+	private Sprite standingLeftSprite, standingRightSprite, jumpingRightSprite, jumpingLeftSprite, fallingRightSprite,
 			fallingLeftSprite;
 	private int timer = 0;
 
@@ -38,12 +39,31 @@ public class Player extends GameObject {
 		for (int i = 0; i < walkingSprites.length; i++) {
 			walkingSprites[i] = new Sprite(i, 0, 1, 1);
 		}
-		standingSpriteRight = new Sprite(0, 0, 1, 1);
-		standingSpriteLeft = new Sprite(5, 0, 1, 1);
+		standingRightSprite = new Sprite(0, 0, 1, 1);
+		standingLeftSprite = new Sprite(5, 0, 1, 1);
 		jumpingRightSprite = new Sprite(11, 0, 1, 1);
 		jumpingLeftSprite = new Sprite(12, 0, 1, 1);
 		fallingRightSprite = new Sprite(13, 0, 1, 1);
 		fallingLeftSprite = new Sprite(14, 0, 1, 1);
+	}
+	
+	/**
+	 * Draws either the left or right sprite depending on the direction the player facing
+	 * 
+	 * @param right	the Sprite to draw when the player looks right
+	 * @param left	the Sprite to draw when the player looks left
+	 * @param g	where to draw the Sprite on
+	 */
+	public void renderSprite(Sprite right, Sprite left, Graphics g){
+		if (velX > 0) {
+			g.drawImage(right.getBufferedImage(), x, y, width, height, null);
+		} else {
+			if (lastDirection != 1) {
+				g.drawImage(left.getBufferedImage(), x, y, width, height, null);
+			} else {
+				g.drawImage(right.getBufferedImage(), x, y, width, height, null);
+			}
+		}
 	}
 
 	/**
@@ -51,30 +71,13 @@ public class Player extends GameObject {
 	 * 
 	 * @param g Graphics object where everything will be drawn on
 	 */
-
 	@Override
 	public void render(Graphics g) {
 		int spriteIndex = (int) Math.floor(timer / 6);
 		if (velY < 0) {
-			if (velX > 0) {
-				g.drawImage(jumpingRightSprite.getBufferedImage(), x, y, width, height, null);
-			} else {
-				if (lastDirection != 1) {
-					g.drawImage(jumpingLeftSprite.getBufferedImage(), x, y, width, height, null);
-				} else {
-					g.drawImage(jumpingRightSprite.getBufferedImage(), x, y, width, height, null);
-				}
-			}
+			renderSprite(jumpingRightSprite, jumpingLeftSprite, g);
 		} else if (velY > 0 && !onGround) {
-			if (velX > 0) {
-				g.drawImage(fallingRightSprite.getBufferedImage(), x, y, width, height, null);
-			} else {
-				if (lastDirection != 1) {
-					g.drawImage(fallingLeftSprite.getBufferedImage(), x, y, width, height, null);
-				} else {
-					g.drawImage(fallingRightSprite.getBufferedImage(), x, y, width, height, null);
-				}
-			}
+			renderSprite(fallingRightSprite,fallingLeftSprite, g);
 		} else if (velX > 0) {
 			g.drawImage(walkingSprites[spriteIndex].getBufferedImage(), x, y, width, height, null);
 			lastDirection = 1;
@@ -83,9 +86,9 @@ public class Player extends GameObject {
 			lastDirection = -1;
 		} else {
 			if (lastDirection == 1) {
-				g.drawImage(standingSpriteRight.getBufferedImage(), x, y, width, height, null);
+				g.drawImage(standingRightSprite.getBufferedImage(), x, y, width, height, null);
 			} else {
-				g.drawImage(standingSpriteLeft.getBufferedImage(), x, y, width, height, null);
+				g.drawImage(standingLeftSprite.getBufferedImage(), x, y, width, height, null);
 			}
 		}
 //		renderCollision(g);
@@ -98,14 +101,14 @@ public class Player extends GameObject {
 	 */
 	public void calculateMovement(Key key) {
 		if (key.isRight()) {
-			setVelX(5);
+			setVelX(walkingSpeed);
 		} else if (key.isLeft()) {
-			setVelX(-5);
+			setVelX(-walkingSpeed);
 		} else {
 			setVelX(0);
 		}
 		if (key.isUp()) {
-			setVelY(-20);
+			setVelY(jumpSpeed);
 		}
 	}
 
@@ -115,13 +118,14 @@ public class Player extends GameObject {
 	 */
 	public void tick() {
 		timer++;
-		if (timer == 30) {
+		int timerMax=30;
+		if (timer == timerMax) {
 			timer = 0;
 		}
 		if (!right && !left) {
 			velX = 0;
 		}
-		if (velY < 20) {
+		if (velY < -jumpSpeed) {
 			velY += 1;
 		}
 		y += velY;

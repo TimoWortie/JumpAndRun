@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import handler.Handler;
-import input.Key;
 
 /**
  * Game creation for JumpAndRun.
@@ -20,7 +19,7 @@ public class Game extends Canvas implements Runnable {
 	private Handler handler;
 	private Thread thread = new Thread();
 	private boolean running = false;
-	private Key key = new Key();
+	private double tickCount=60.0;
 
 	/**
 	 * Initializes the handler. This method is only executed once at the start of
@@ -29,8 +28,8 @@ public class Game extends Canvas implements Runnable {
 	 *
 	 */
 	public void init() {
-		handler = new Handler(key);
-		addKeyListener(key);
+		handler = new Handler();
+		addKeyListener(handler.getKey());
 		handler.init(this.getWidth(), this.getHeight());
 	}
 
@@ -44,7 +43,7 @@ public class Game extends Canvas implements Runnable {
 		long lastTime = System.nanoTime();
 		long timer = System.currentTimeMillis();
 		double delta = 0.0;
-		double nanosecounds = 1000000000.0 / 60.0;
+		double nanosecounds = 1000000000.0 / tickCount;
 		while (running) {
 			long now = System.nanoTime();
 			delta += (now - lastTime) / nanosecounds;

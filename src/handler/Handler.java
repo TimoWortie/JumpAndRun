@@ -30,8 +30,8 @@ public class Handler {
 	 * 
 	 * @param key the KeyInput used for the player
 	 */
-	public Handler(Key key) {
-		this.key = key;
+	public Handler() {
+		this.key = new Key();
 	}
 
 	/**
@@ -106,5 +106,13 @@ public class Handler {
 	 */
 	public int getBlocksCount() {
 		return blocks.size();
+	}
+	
+	/**
+	 * returns the KeyListener for use in the Game class
+	 * @return the Key object linked with the player
+	 */
+	public Key getKey(){
+		return this.key;
 	}
 }

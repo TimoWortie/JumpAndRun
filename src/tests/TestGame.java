@@ -89,7 +89,7 @@ class TestGame {
 	 */
 	@Test
 	void testHandleObject() {
-		Handler testHandler = new Handler(new Key());
+		Handler testHandler = new Handler();
 		GameObject block = new TestBlock(0, 0, 0, 0);
 		int blockCount = testHandler.getBlocksCount();
 		testHandler.addBlock(block);
@@ -105,7 +105,7 @@ class TestGame {
 	 */
 	@Test
 	void testRemoveBlockOnEmptyHandler() {
-		Handler testHandler = new Handler(new Key());
+		Handler testHandler = new Handler();
 		GameObject block = new TestBlock(0, 0, 0, 0);
 		testHandler.removeBlock(block);
 	}
@@ -115,7 +115,7 @@ class TestGame {
 	 */
 	@Test
 	void testDuplicateBlock() {
-		Handler testHandler = new Handler(new Key());
+		Handler testHandler = new Handler();
 		GameObject block = new TestBlock(0, 0, 0, 0);
 		GameObject blockDuplicate = new TestBlock(0, 0, 0, 0);
 		int counter = testHandler.getBlocksCount();

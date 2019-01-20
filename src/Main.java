@@ -26,7 +26,6 @@ public class Main {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		frame.setResizable(false);
-//		frame.setAlwaysOnTop(true);
 		game.start();
 
 	}
