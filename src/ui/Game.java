@@ -19,7 +19,7 @@ public class Game extends Canvas implements Runnable {
 	private Handler handler;
 	private Thread thread = new Thread();
 	private boolean running = false;
-	private double tickCount=60.0;
+	private double tickCount = 60.0;
 
 	/**
 	 * Initializes the handler. This method is only executed once at the start of

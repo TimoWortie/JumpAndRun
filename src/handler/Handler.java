@@ -107,12 +107,13 @@ public class Handler {
 	public int getBlocksCount() {
 		return blocks.size();
 	}
-	
+
 	/**
 	 * returns the KeyListener for use in the Game class
+	 * 
 	 * @return the Key object linked with the player
 	 */
-	public Key getKey(){
+	public Key getKey() {
 		return this.key;
 	}
 }

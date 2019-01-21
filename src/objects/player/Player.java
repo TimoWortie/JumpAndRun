@@ -17,8 +17,8 @@ import sun.java2d.pipe.RenderBuffer;
  */
 
 public class Player extends GameObject {
-	private int walkingSpeed=5;
-	private int jumpSpeed=-20;
+	private int walkingSpeed = 5;
+	private int jumpSpeed = -20;
 	private int velX = 0;
 	private int velY = 5;
 	private boolean jumping = false;
@@ -46,15 +46,16 @@ public class Player extends GameObject {
 		fallingRightSprite = new Sprite(13, 0, 1, 1);
 		fallingLeftSprite = new Sprite(14, 0, 1, 1);
 	}
-	
+
 	/**
-	 * Draws either the left or right sprite depending on the direction the player facing
+	 * Draws either the left or right sprite depending on the direction the player
+	 * facing
 	 * 
-	 * @param right	the Sprite to draw when the player looks right
-	 * @param left	the Sprite to draw when the player looks left
-	 * @param g	where to draw the Sprite on
+	 * @param right the Sprite to draw when the player looks right
+	 * @param left  the Sprite to draw when the player looks left
+	 * @param g     where to draw the Sprite on
 	 */
-	public void renderSprite(Sprite right, Sprite left, Graphics g){
+	public void renderSprite(Sprite right, Sprite left, Graphics g) {
 		if (velX > 0) {
 			g.drawImage(right.getBufferedImage(), x, y, width, height, null);
 		} else {
@@ -77,7 +78,7 @@ public class Player extends GameObject {
 		if (velY < 0) {
 			renderSprite(jumpingRightSprite, jumpingLeftSprite, g);
 		} else if (velY > 0 && !onGround) {
-			renderSprite(fallingRightSprite,fallingLeftSprite, g);
+			renderSprite(fallingRightSprite, fallingLeftSprite, g);
 		} else if (velX > 0) {
 			g.drawImage(walkingSprites[spriteIndex].getBufferedImage(), x, y, width, height, null);
 			lastDirection = 1;
@@ -118,7 +119,7 @@ public class Player extends GameObject {
 	 */
 	public void tick() {
 		timer++;
-		int timerMax=30;
+		int timerMax = 30;
 		if (timer == timerMax) {
 			timer = 0;
 		}
